@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-canvas: #0b0f14;
+  --color-panel: #111821;
+  --color-panel-2: #17212c;
+  --color-panel-3: #1d2936;
+  --color-line: #273444;
+  --color-line-soft: #1d2835;
+  --color-ink: #e8eef5;
+  --color-muted: #8b99ab;
+  --color-faint: #5f6d7e;
+  --color-accent: #f2b84b;
+  --color-accent-soft: #3a2d13;
+  --color-green: #6ee7a8;
+  --color-red: #f87171;
+  --color-blue: #6ec6e8;
+  --font-sans: 'Microsoft YaHei UI', 'Microsoft YaHei', 'Noto Sans SC', 'PingFang SC',
+    system-ui, sans-serif;
+  --font-mono: 'Cascadia Mono', 'Consolas', 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #app,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: rgba(242, 184, 75, 0.26);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a3747;
+    border: 2px solid #0b0f14;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .pb-card {
+    @apply rounded-xl border border-line bg-panel;
+  }
+
+  /* Solid elevated surface for dialogs and floating panels. Without it the
+     content underneath shows through and two layouts read on top of each other. */
+  .pb-panel {
+    @apply rounded-xl border border-line bg-panel shadow-2xl shadow-black/50;
+  }
+
+  .pb-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel-2 px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-panel-3 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .pb-btn-primary {
+    @apply border-accent/40 bg-accent text-[#1a1205] hover:bg-[#ffc95e];
+  }
+
+  .pb-btn-ghost {
+    @apply border-transparent bg-transparent hover:bg-panel-2;
+  }
+
+  .pb-btn-danger {
+    @apply border-red/30 bg-red/10 text-red hover:bg-red/20;
+  }
+
+  .pb-input {
+    @apply w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink outline-none transition placeholder:text-faint focus:border-accent/60 focus:ring-2 focus:ring-accent/15;
+  }
+
+  .pb-label {
+    @apply text-xs font-medium tracking-wide text-muted;
+  }
+
+  .pb-chip {
+    @apply inline-flex items-center gap-1 rounded-md border border-line bg-panel-2 px-2 py-1 text-[11px] font-medium text-muted;
+  }
+
+  .pb-nav {
+    @apply flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted transition-colors hover:bg-panel-2 hover:text-ink;
+  }
+
+  .pb-nav-active {
+    @apply bg-accent-soft text-accent;
+  }
+
+  .pb-icon-btn {
+    @apply inline-flex size-9 items-center justify-center rounded-lg border border-line bg-panel-2 text-muted transition hover:bg-panel-3 hover:text-ink;
+  }
+
+  .pb-kbd {
+    @apply rounded border border-line bg-panel-2 px-1.5 py-0.5 font-mono text-[10px] text-muted;
+  }
+
+  /* Calm neutral backing for transparent art, matching the editor canvas.
+     A checkerboard reads as noise behind pixel art, so every asset surface
+     (library, generator, previews, lightbox) uses this one tone. */
+  .transparency {
+    background-color: #1b222c;
+  }
+
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  .pb-grid-bg {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .pb-fade-in {
+    animation: pb-fade-in 0.18s ease-out both;
+  }
+}
+
+@keyframes pb-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/*
+ * Selects size to their option text. Fixed utility widths used to clip
+ * Chinese labels (e.g. 稳定版, ComfyUI（本地）) under the native arrow.
+ * These rules are unlayered so they win over Tailwind's width utilities.
+ */
+select.pb-input {
+  width: auto;
+  min-width: 5.5rem;
+  max-width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 1.6rem;
+  text-align: left;
+  line-height: 1.2;
+}
+
+select.pb-input.w-full {
+  width: 100%;
+}
