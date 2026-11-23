@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "channel": "stable",
+  "publishedAt": "2026-11-23T17:02:19Z",
+  "notes": "Indie Studio 0.1.0 稳定版。设定、数值表、生成台、像素编辑器与局部重绘；含源码与免安装版下载。",
+  "pageUrl": "https://github.com/Tangerine-Living/indie-studio/releases/tag/v0.1.0",
+  "windows": {
+    "url": "https://github.com/Tangerine-Living/indie-studio/releases/download/v0.1.0/indie-studio-0.1.0-installer.exe",
+    "sha256": "8da31de773484745f11231fecf95075ffee25a0e1a2d72a32f0ca01b087e35ef",
+    "size": 7746287
+  }
+}
