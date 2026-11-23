@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "channel": "dev",
+  "publishedAt": "2026-11-23T16:47:15Z",
+  "notes": "Indie Studio 0.1.0 开发版，当前与稳定版完全一致。含源码与免安装版下载。",
+  "pageUrl": "https://github.com/Tangerine-Living/indie-studio/releases/tag/dev-v0.1.0",
+  "windows": {
+    "url": "https://github.com/Tangerine-Living/indie-studio/releases/download/dev-v0.1.0/indie-studio-0.1.0-installer.exe",
+    "sha256": "353aecc65c3ea7fdf3f633629055e5bf731bf364d849ce16448d8d92477c7494",
+    "size": 7746116
+  }
+}
